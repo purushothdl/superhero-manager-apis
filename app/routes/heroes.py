@@ -10,7 +10,7 @@ router = APIRouter(tags=["heroes"], prefix="/heroes")
 @router.get("/missions", response_model=List[MissionResponse])
 async def get_missions(
     hero_service: HeroService = Depends(get_hero_service),
-    current_user: dict = Depends(get_current_user)
+    _ = Depends(get_current_user)
 ):
     """Get all missions from the database"""
     return await hero_service.get_all_missions()
@@ -19,7 +19,7 @@ async def get_missions(
 async def get_mission(
     mission_id: int,
     hero_service: HeroService = Depends(get_hero_service),
-    current_user: dict = Depends(get_current_user)
+    _ = Depends(get_current_user)
 ):
     """Get a specific mission by ID"""
     return await hero_service.get_mission_by_id(mission_id)
@@ -27,7 +27,7 @@ async def get_mission(
 @router.get("/", response_model=List[HeroResponse])
 async def get_heroes(
     hero_service: HeroService = Depends(get_hero_service),
-    current_user: dict = Depends(get_current_user)
+    _ = Depends(get_current_user)
 ):
     """Get all heroes from the database"""
     return await hero_service.get_all_heroes()
@@ -36,7 +36,7 @@ async def get_heroes(
 async def get_hero(
     hero_id: int,
     hero_service: HeroService = Depends(get_hero_service),
-    current_user: dict = Depends(get_current_user)
+    _ = Depends(get_current_user)
 ):
     """Get a specific hero by ID"""
     return await hero_service.get_hero_by_id(hero_id)
